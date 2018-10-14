@@ -12,7 +12,7 @@ RUN apt-get update
 RUN apt-get -y upgrade
 
 # PHP and nginx
-RUN apt-get install php7.0-fpm php7.0-mysql php7.0-gd php7.0-cli nginx -y
+RUN apt-get install php7.0-fpm php7.0-mysql php7.0-gd php7.0-cli nginx -y --no-install-recommends apt-utils
 
 # Some essential tools
 RUN apt-get install curl git wget net-tools vim -y
@@ -42,7 +42,7 @@ RUN mkdir -p /var/run/php
 RUN mkdir -p /var/log/php-fpm
 
 # nginx site conf
-ADD ./site.conf /etc/nginx/sites-available/default
+ADD ./virtualhost.conf /etc/nginx/sites-available/default
 
 RUN apt-get install python-pip -y
 # Supervisor Config
